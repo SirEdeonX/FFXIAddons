@@ -1,4 +1,4 @@
---[[    BSD License Disclaimer
+--[[
         Copyright © 2017, SirEdeonX
         All rights reserved.
 

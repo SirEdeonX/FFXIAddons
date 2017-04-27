@@ -1,4 +1,4 @@
---[[    BSD License Disclaimer
+--[[
         Copyright © 2017, SirEdeonX
         All rights reserved.
 
@@ -29,7 +29,7 @@
 -- Addon Description
 _addon.name = 'XIV Bar'
 _addon.author = 'Edeon'
-_addon.version = '0.1'
+_addon.version = '1.0'
 _addon.commands = {'xivbar'}
 _addon.language = 'english'
 

@@ -1,0 +1,2 @@
+# FFXIAddons
+Custom FFXI Addons

@@ -22,3 +22,19 @@ and you can use a compact version for a smaller resolution:
 1. Go to your windower folder
 2. Open the file **_Windower4/scripts/init.txt_**
 3. Add the following line to the end of the file ``` lua l xivbar ```
+
+## How to edit the settings
+1. Login to your character in FFXI
+2. Edit the addon's settings file: **_Windower4\addons\xivbar\data\settings.xml_**
+3. Save the file 
+4. Press Insert in FFXI to access the windower console 
+5. Type ``` lua r xivbar ``` to reload the addon
+6. Press Insert in FFXI again to close the windower console
+
+### Available Settings
+* Compact - true/false - sets compact mode
+* Offset X - any number - move the bar left (negative number) or right (positive number) the given number of pixels
+* Offset Y - any number - move the bar up (negative number) or down (positive number) the given number of pixels
+* Style - ffxi/ffxiv - changes the style of the bars
+
+There are also other settings you can change such as text colors.

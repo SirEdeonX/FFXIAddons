@@ -9,7 +9,7 @@ This is a very simple version with a lot of features still missing and A LOT of 
 #### Limitations:
 1. Please note that if you have more than one character with the same name under the same account, even if they're from different servers, the hotbars will be overwritten.
 2. The addon still doesn't recognize if you're writing in chat or not and will continue to activate the actions when the buttons are pressing. To write freely in the chat, hide the hotbar by pressing the backslash \\ key
-3. The addon still doesn't have commands, so you're gonna have to edit your hotbar directly through the xml
+3. The addon still doesn't have commands, so you're gonna have to edit your hotbar directly through the xml. I left my hotbar as an example in **_data/hotbar/Edeon_**
 4. The skill icons and info used were copied from the Timers plugin (you don't need to have it installed). As such, there are some icons that don't work and wrong elements on some skills
 5. 2hours recast is not working
 

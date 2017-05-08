@@ -1,5 +1,5 @@
 # xivhotbar - [WIP]
-This addon adds a hotbar
+This addon adds a hotbar to FFXI, akin to those of more modern MMOs, along with recast times and mp/tp costs. It can also trigger custom commands.
 
 ![alt text](http://i.imgur.com/RnpVLbZ.png)
 
@@ -10,8 +10,9 @@ This is a very simple version with a lot of features still missing and A LOT of 
 1. Please note that if you have more than one character with the same name under the same account, even if they're from different servers, the hotbars will be overwritten.
 2. The addon still doesn't recognize if you're writing in chat or not and will continue to activate the actions when the buttons are pressing. To write freely in the chat, hide the hotbar by pressing the backslash \\ key
 3. The addon still doesn't have commands, so you're gonna have to edit your hotbar directly through the xml. I left my hotbar as an example in **_data/hotbar/Edeon_**
-4. The skill icons and info used were copied from the Timers plugin (you don't need to have it installed). As such, there are some icons that don't work and wrong elements on some skills
-5. 2hours recast is not working
+4. The addon still doesn't override the game's keys. So when activating the third hotbar with CTRL, the macro bar ingame will show and activate too. To go around it, you can use an empty macro page.
+5. The skill icons and info used were copied from the Timers plugin (you don't need to have it installed). As such, there are some icons that don't work and wrong elements on some skills
+6. 2hours recast is not working
 
 ####Still todo:
 1. Add key mapping

@@ -10,6 +10,14 @@ You can choose from 3 different styles 'ffxiv', 'ffxi' and 'ffxiv-legacy'.
 and you can use a compact version for a smaller resolution:
 ![alt text](http://i.imgur.com/0vgfDq1.png)
 
+#### Latest Changes:
+```
+ 08/05/17
+    - added FullTpColor setting
+ 27/04/17
+    - released WIP version
+ ```
+
 ## How to install:
 1. Download the repository [here](https://github.com/SirEdeonX/FFXIAddons/archive/master.zip)
 2. Extract the **_xivbar_** folder to your **_Windower4/addons_** folder
@@ -40,6 +48,7 @@ and you can use a compact version for a smaller resolution:
 * **Offset** - moves the HP, MP and TP numbers left (negative number) or right (positive number) the given number of pixels
 * **Size** - The font size for the HP, MP and TP numbers
 * **Stroke** - The font stroke the HP, MP and TP numbers
+* **FullTpColor** - The font color for the TP numbers when the bar is full
 
 ## How to edit the settings
 1. Login to your character in FFXI

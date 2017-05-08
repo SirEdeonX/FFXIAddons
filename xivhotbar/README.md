@@ -6,6 +6,15 @@ This addon adds a hotbar to FFXI, akin to those of more modern MMOs, along with 
 ## WIP Version 
 This is a very simple version with a lot of features still missing and A LOT of bugs.
 
+#### Latest Changes:
+```
+ 08/05/17
+    - fixed job change and battle notice bugs. 
+    - added PSDs for custom icons to repository
+ 07/05/17
+    - released WIP version
+ ```
+
 #### Limitations:
 1. Please note that if you have more than one character with the same name under the same account, even if they're from different servers, the hotbars will be overwritten.
 2. The addon still doesn't recognize if you're writing in chat or not and will continue to activate the actions when the buttons are pressing. To write freely in the chat, hide the hotbar by pressing the backslash \\ key
@@ -24,6 +33,11 @@ This is a very simple version with a lot of features still missing and A LOT of 
 7. Add skillchain info
 8. Allow vertical hotbars
 9. Add multiple hotbar pages
+
+#### Bugs:
+1. ~~Job change error~~
+2. ~~When toggling the hotbar, the battle notice gets out of sync~~
+3. Mp and Tp cost text changes color
 
 ## How to install:
 1. Download the repository [here](https://github.com/SirEdeonX/FFXIAddons/archive/master.zip)

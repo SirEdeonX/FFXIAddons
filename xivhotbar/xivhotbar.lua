@@ -96,6 +96,7 @@ end
 -- reload hotbar
 function reload_hotbar()
     player:load_hotbar()
+    ui:load_player_hotbar(player.hotbar, player.vitals, player.hotbar_settings.active_environment)
 end
 
 -- change active hotbar

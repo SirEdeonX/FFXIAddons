@@ -60,8 +60,8 @@ function player:initialize(windower_player, theme_options)
     storage:setup(self)
 end
 
--- update palyer jobs
-function player:updates_jobs(main, sub)
+-- update player jobs
+function player:update_jobs(main, sub)
     self.main_job = main
     self.sub_job = sub
 

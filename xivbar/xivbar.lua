@@ -111,6 +111,10 @@ function update_bar(bar, text, width, current, pp, flag)
                 xivbar.mp_bar_width = x
             elseif flag == 3 then
                 xivbar.tp_bar_width = x
+
+                if current > 1000 then
+                    text:color(theme_options.full_tp_color_red, theme_options.full_tp_color_green, theme_options.full_tp_color_blue)
+                end
             end
 
             bar:size(x, theme_options.total_height)

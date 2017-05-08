@@ -262,7 +262,7 @@ end
 
 -- show ui components
 function ui:show(player_hotbar, environment)
-    if self.theme.hide_battle_notice == false then self.battle_notice:show() end
+    if self.theme.hide_battle_notice == false and environment == 'battle' then self.battle_notice:show() end
 
     for h=1,self.theme.hotbar_number,1 do
         for i=1,10,1 do

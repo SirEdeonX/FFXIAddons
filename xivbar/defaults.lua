@@ -59,5 +59,9 @@ defaults.Texts.Stroke.Alpha = 200
 defaults.Texts.Stroke.Red = 50
 defaults.Texts.Stroke.Green = 50
 defaults.Texts.Stroke.Blue = 50
+defaults.Texts.FullTpColor = {}
+defaults.Texts.FullTpColor.Red = 80
+defaults.Texts.FullTpColor.Green = 180
+defaults.Texts.FullTpColor.Blue = 250
 
 return defaults

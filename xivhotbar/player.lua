@@ -34,6 +34,7 @@ local player = {}
 player.name = ''
 player.main_job = ''
 player.sub_job = ''
+player.server = ''
 
 player.vitals = {}
 player.vitals.mp = 0
@@ -47,10 +48,11 @@ player.hotbar_settings.active_hotbar = 1
 player.hotbar_settings.active_environment = 'field'
 
 -- initialize player
-function player:initialize(windower_player, theme_options)
+function player:initialize(windower_player, server, theme_options)
     self.name = windower_player.name
     self.main_job = windower_player.main_job
     self.sub_job = windower_player.sub_job
+    self.server = server
 
     self.hotbar_settings.max = theme_options.hotbar_number
 

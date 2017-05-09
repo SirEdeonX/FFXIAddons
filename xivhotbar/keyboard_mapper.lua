@@ -28,6 +28,9 @@
 
 local keyboard = {}
 
+keyboard.less_great = -1
+
+keyboard.esc = 1
 keyboard.key_1 = 2
 keyboard.key_2 = 3
 keyboard.key_3 = 4
@@ -40,10 +43,18 @@ keyboard.key_9 = 10
 keyboard.key_0 = 11
 keyboard.underscore = 12
 
-keyboard.shift = 42
+keyboard.q = 16
+keyboard.w = 17
+keyboard.e = 18
+
+keyboard.enter = 28
 keyboard.ctrl = 29
-keyboard.alt = 56
+
+keyboard.shift = 42
 keyboard.backslash = 43
+keyboard.comma = 51
+keyboard.period = 52
+keyboard.alt = 56
 
 keyboard.up = 200
 keyboard.down = 208

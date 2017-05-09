@@ -3,12 +3,27 @@ This addon adds a hotbar to FFXI, akin to those of more modern MMOs, along with 
 
 ![alt text](http://i.imgur.com/RnpVLbZ.png)
 
+You can choose from 3 different styles 'ffxiv', 'ffxi' and 'classic'.
+
+![alt text](http://i.imgur.com/g72PpaG.png)
+
+Or you can mix and match and choose a different style for each component.
+
+![alt text](http://i.imgur.com/8r6m2hq.png)
+
+The hotbar is also very customizable. You can use custom icons, hide the ability names, recast, elements, mp/tp cost and even empty slots.
+
+![alt text](http://i.imgur.com/ObDnDPG.png)
+
 ## WIP Version 
 This is a very simple version with a lot of features still missing and A LOT of bugs.
 
 #### Latest Changes:
 ```
  08/05/17
+    - IMPORTANT! hotbar files are now inside a server directory so characters with same name don't override each other. Your hotbars will be cleared upon login, but you can copy the old file into the new server directory.
+    - fixed chat input triggering hotbar
+    - removed key to hide bar and added setting ToggleBattleMode
     - fixed job change and battle notice bugs. 
     - added PSDs for custom icons to repository
  07/05/17
@@ -16,12 +31,10 @@ This is a very simple version with a lot of features still missing and A LOT of 
  ```
 
 #### Limitations:
-1. Please note that if you have more than one character with the same name under the same account, even if they're from different servers, the hotbars will be overwritten.
-2. The addon still doesn't recognize if you're writing in chat or not and will continue to activate the actions when the buttons are pressing. To write freely in the chat, hide the hotbar by pressing the backslash \\ key
-3. The addon still doesn't have commands, so you're gonna have to edit your hotbar directly through the xml. I left my hotbar as an example in **_data/hotbar/Edeon_**
-4. The addon still doesn't override the game's keys. So when activating the third hotbar with CTRL, the macro bar ingame will show and activate too. To go around it, you can use an empty macro page.
-5. The skill icons and info used were copied from the Timers plugin (you don't need to have it installed). As such, there are some icons that don't work and wrong elements on some skills
-6. 2hours recast is not working
+1. The addon still doesn't have commands, so you're gonna have to edit your hotbar directly through the xml. I left my hotbar as an example in **_data/hotbar/Server/Edeon_**
+2. The addon still doesn't override the game's keys. So when activating the third hotbar with CTRL, the macro bar ingame will show and activate too. To go around it, you can use an empty macro page.
+3. The skill icons and info used were copied from the Timers plugin (you don't need to have it installed). As such, there are some icons that don't work and wrong elements on some skills
+4. 2hours recast is not working
 
 ####Still todo:
 1. Add key mapping
@@ -34,10 +47,8 @@ This is a very simple version with a lot of features still missing and A LOT of 
 8. Allow vertical hotbars
 9. Add multiple hotbar pages
 
-#### Bugs:
-1. ~~Job change error~~
-2. ~~When toggling the hotbar, the battle notice gets out of sync~~
-3. Mp and Tp cost text changes color
+#### Current Bugs:
+1. Mp and Tp cost text changes color
 
 ## How to install:
 1. Download the repository [here](https://github.com/SirEdeonX/FFXIAddons/archive/master.zip)
@@ -55,13 +66,12 @@ This is a very simple version with a lot of features still missing and A LOT of 
 
 ## Controls
 1. Hotbars are controlled with 1-0, SHIFT+1-0 and CTRL+1-0
-2. You can toggle between battle mode using ALT
-3. You can hide the hotbar using \   (this key might change with different keyboards)
+2. You can toggle between battle mode using backslash \ (customizable through ToggleBattleMode setting)
 
 ## How to add actions to the hotbar
 Temporarily, the actions must be added by editing the hotbar file:
 1. Login to your character in FFXI. A default hotbar will be created
-2. Edit the hotbar file: **_Windower4\addons\xivhotbar\data\hotbar\CHARACTER_NAME\MAIN_SUB.xml_**
+2. Edit the hotbar file: **_Windower4\addons\xivhotbar\data\hotbar\SERVER\CHARACTER_NAME\MAIN_SUB.xml_**
 3. Save the file 
 4. Press Insert in FFXI to access the windower console 
 5. Type ``` lua r xivhotbar ``` to reload the addon

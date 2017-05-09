@@ -528,6 +528,7 @@ function ui:check_recasts(player_hotbar, player_vitals, environment)
                     -- show recast animation
                     if self.theme.hide_recast_animation == false or self.theme.hide_recast_text == false then
                         local new_height = 40 * (skill_recasts[tonumber(skill.icon)] / tonumber(self.disabled_slots.on_cooldown[action.action]))
+                        if new_height > 40 then new_height = 40 end -- temporary bug fix
                         local recast_time = calc_recast_time(skill_recasts[tonumber(skill.icon)], is_in_seconds)
 
                         in_cooldown = true

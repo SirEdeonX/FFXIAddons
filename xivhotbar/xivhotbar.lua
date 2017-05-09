@@ -63,10 +63,11 @@ local xivhotbar = require('variables')
 -- initialize addon
 function initialize()
     local windower_player = windower.ffxi.get_player()
+    local server = resources.servers[windower.ffxi.get_info().server].en
 
     if windower_player == nil then return end
 
-    player:initialize(windower_player, theme_options)
+    player:initialize(windower_player, server, theme_options)
     player:load_hotbar()
     ui:setup(theme_options)
     ui:load_player_hotbar(player.hotbar, player.vitals, player.hotbar_settings.active_environment)
@@ -127,19 +128,8 @@ end)
 
 -- ON KEY
 windower.register_event('keyboard', function(dik, flags, blocked)
-    if xivhotbar.ready == false then
+    if xivhotbar.ready == false or windower.ffxi.get_info().chat_open then
         return
-    end
-
-    -- hide hotbar
-    if dik == keyboard.backslash and flags == true then
-        if xivhotbar.hide_hotbars == false then
-            xivhotbar.hide_hotbars = true
-            ui:hide()
-        else
-            xivhotbar.hide_hotbars = false
-            ui:show(player.hotbar, player.hotbar_settings.active_environment)
-        end
     end
 
     if xivhotbar.hide_hotbars then
@@ -168,7 +158,7 @@ windower.register_event('keyboard', function(dik, flags, blocked)
         change_active_hotbar(1)
     end
 
-    if dik == keyboard.alt and flags == true then
+    if dik == theme_options.controls_battle_mode and flags == true then
         toggle_environment()
     end
 

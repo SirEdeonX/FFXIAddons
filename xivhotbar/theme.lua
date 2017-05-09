@@ -74,6 +74,8 @@ theme.apply = function (settings)
     options.text_offset_x = settings.Texts.OffsetX
     options.text_offset_y = settings.Texts.OffsetY
 
+    options.controls_battle_mode = settings.Controls.ToggleBattleMode
+
     return options
 end
 

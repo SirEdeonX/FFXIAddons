@@ -38,6 +38,9 @@ defaults.Hotbar.HideRecastAnimation = false
 defaults.Hotbar.HideRecastText = false
 defaults.Hotbar.HideBattleNotice = false
 
+defaults.Controls = {}
+defaults.Controls.ToggleBattleMode = 43
+
 defaults.Theme = {}
 defaults.Theme.BattleNotice = 'ffxiv'
 defaults.Theme.Slot = 'ffxiv'

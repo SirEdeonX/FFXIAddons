@@ -75,8 +75,6 @@ function update_bar(bar, text, width, current, pp, flag)
     local old_width = width
     local new_width = math.floor((pp / 100) * theme_options.bar_width)
 
-    text:color(theme_options.font_color_red, theme_options.font_color_green, theme_options.font_color_blue)
-
     if new_width ~= nil and new_width >= 0 then
         if old_width == new_width then
             if new_width == 0 then
@@ -113,18 +111,18 @@ function update_bar(bar, text, width, current, pp, flag)
                 xivbar.mp_bar_width = x
             elseif flag == 3 then
                 xivbar.tp_bar_width = x
-
-                if current > 1000 then
-                    text:color(theme_options.full_tp_color_red, theme_options.full_tp_color_green, theme_options.full_tp_color_blue)
-                    if theme_options.dim_tp_bar then bar:alpha(255) end
-                else
-                    if theme_options.dim_tp_bar then bar:alpha(180) end
-                end
             end
 
             bar:size(x, theme_options.total_height)
             bar:show()
         end
+    end
+
+    if flag == 3 and current > 1000 then
+        text:color(theme_options.full_tp_color_red, theme_options.full_tp_color_green, theme_options.full_tp_color_blue)
+        if theme_options.dim_tp_bar then bar:alpha(255) end
+    else
+        if theme_options.dim_tp_bar then bar:alpha(180) end
     end
 
     text:text(tostring(current))

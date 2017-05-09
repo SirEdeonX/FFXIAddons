@@ -122,6 +122,7 @@ function update_bar(bar, text, width, current, pp, flag)
         text:color(theme_options.full_tp_color_red, theme_options.full_tp_color_green, theme_options.full_tp_color_blue)
         if theme_options.dim_tp_bar then bar:alpha(255) end
     else
+        text:color(theme_options.font_color_red, theme_options.font_color_green, theme_options.font_color_blue)
         if theme_options.dim_tp_bar then bar:alpha(180) end
     end
 

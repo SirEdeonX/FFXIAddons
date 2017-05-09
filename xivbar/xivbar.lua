@@ -118,7 +118,7 @@ function update_bar(bar, text, width, current, pp, flag)
         end
     end
 
-    if flag == 3 and current > 1000 then
+    if flag == 3 and current >= 1000 then
         text:color(theme_options.full_tp_color_red, theme_options.full_tp_color_green, theme_options.full_tp_color_blue)
         if theme_options.dim_tp_bar then bar:alpha(255) end
     else

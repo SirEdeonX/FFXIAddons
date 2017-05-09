@@ -43,6 +43,7 @@ defaults.Theme.Bar.Compact = {}
 defaults.Theme.Bar.Compact.Width = 116
 defaults.Theme.Bar.Compact.Spacing = 16
 defaults.Theme.Bar.Compact.Offset = 0
+defaults.Theme.DimTpBar = true
 
 defaults.Texts = {}
 defaults.Texts.Font = 'sans-serif'

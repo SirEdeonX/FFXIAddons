@@ -13,6 +13,7 @@ and you can use a compact version for a smaller resolution:
 #### Latest Changes:
 ```
  08/05/17
+    - added DimTpBar setting
     - added FullTpColor setting
  27/04/17
     - released WIP version
@@ -49,6 +50,7 @@ and you can use a compact version for a smaller resolution:
 * **Size** - The font size for the HP, MP and TP numbers
 * **Stroke** - The font stroke the HP, MP and TP numbers
 * **FullTpColor** - The font color for the TP numbers when the bar is full
+* **DimTpBar** - dim the TP bar when not full
 
 ## How to edit the settings
 1. Login to your character in FFXI

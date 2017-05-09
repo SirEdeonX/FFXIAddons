@@ -61,6 +61,8 @@ theme.apply = function (settings)
     options.bar_spacing = settings.Theme.Bar.Spacing
     options.bar_offset = settings.Theme.Bar.Offset
 
+    options.dim_tp_bar = settings.Theme.DimTpBar
+
     if settings.Theme.Compact then
         options.bar_background = windower.addon_path .. 'themes/' .. settings.Theme.Name .. '/bar_compact.png'
         options.total_width = 422

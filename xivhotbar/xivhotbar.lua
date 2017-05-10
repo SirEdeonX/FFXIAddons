@@ -31,6 +31,7 @@ _addon.name = 'XIV Hotbar'
 _addon.author = 'Edeon'
 _addon.version = '0.1'
 _addon.language = 'english'
+_addon.commands = {'xivhotbar', 'htb'}
 
 -- Libs
 config = require('config')
@@ -51,6 +52,7 @@ local theme = require('theme')
 local theme_options = theme.apply(settings)
 
 -- Addon Dependencies
+local action_manager = require('action_manager')
 local keyboard = require('keyboard_mapper')
 local player = require('player')
 local ui = require('ui')
@@ -106,6 +108,182 @@ function change_active_hotbar(new_hotbar)
 end
 
 -----------------------------
+-- Addon Commands
+-----------------------------
+
+-- command to set an action in a hotbar
+function set_action_command(args)
+    if not args[5] then
+        print('XIVHOTBAR: Invalid arguments: set <mode> <hotbar> <slot> <action_type> <action> <target (optional)> <alias (optional)> <icon (optional)>')
+        return
+    end
+
+    local environment = args[1]:lower()
+    local hotbar = tonumber(args[2]) or 0
+    local slot = tonumber(args[3]) or 0
+    local action_type = args[4]:lower()
+    local action = args[5]
+    local target = args[6] or nil
+    local alias = args[7] or nil
+    local icon = args[8] or nil
+
+    if environment ~= 'battle' and environment ~= 'field' and environment ~= 'b' and environment ~= 'f' then
+        print('XIVHOTBAR: Invalid mode. Available modes are "Battle" (b) and "Field" (f).')
+        return
+    end
+
+    if hotbar < 1 or hotbar > 3 then
+        print('XIVHOTBAR: Invalid hotbar. Please use a number between 1 and 3.')
+        return
+    end
+
+    if slot < 1 or slot > 10 then
+        print('XIVHOTBAR: Invalid slot. Please use a number between 1 and 10.')
+        return
+    end
+
+    if target ~= nil then target = target:lower() end
+
+    local new_action = action_manager:build(action_type, action, target, alias, icon)
+    player:add_action(new_action, environment, hotbar, slot)
+    player:save_hotbar()
+    reload_hotbar()
+end
+
+-- command to delete an action from an hotbar
+function delete_action_command(args)
+    if not args[3] then
+        print('XIVHOTBAR: Invalid arguments: del <mode> <hotbar> <slot>')
+        return
+    end
+
+    local environment = args[1]:lower()
+    local hotbar = tonumber(args[2]) or 0
+    local slot = tonumber(args[3]) or 0
+
+    if environment ~= 'battle' and environment ~= 'field' and environment ~= 'b' and environment ~= 'f' then
+        print('XIVHOTBAR: Invalid mode. Available modes are "Battle" (b) and "Field" (f).')
+        return
+    end
+
+    if hotbar < 1 or hotbar > 3 then
+        print('XIVHOTBAR: Invalid hotbar. Please use a number between 1 and 3.')
+        return
+    end
+
+    if slot < 1 or slot > 10 then
+        print('XIVHOTBAR: Invalid slot. Please use a number between 1 and 10.')
+        return
+    end
+
+    player:remove_action(environment, hotbar, slot)
+    player:save_hotbar()
+    reload_hotbar()
+end
+
+-- command to copy an action to another slot
+function copy_action_command(args, is_moving)
+    local command = 'copy'
+    if is_moving then command = 'move' end
+
+    if not args[6] then
+        print('XIVHOTBAR: Invalid arguments: ' .. command .. ' <mode> <hotbar> <slot> <to_mode> <to_hotbar> <to_slot>')
+        return
+    end
+
+    local environment = args[1]:lower()
+    local hotbar = tonumber(args[2]) or 0
+    local slot = tonumber(args[3]) or 0
+    local to_environment = args[4]:lower()
+    local to_hotbar =  tonumber(args[5]) or 0
+    local to_slot =  tonumber(args[6]) or 0
+
+    if (environment ~= 'battle' and environment ~= 'field' and environment ~= 'b' and environment ~= 'f') or
+            (to_environment ~= 'battle' and to_environment ~= 'field' and to_environment ~= 'b' and to_environment ~= 'f') then
+        print('XIVHOTBAR: Invalid mode. Available modes are "Battle" (b) and "Field" (f).')
+        return
+    end
+
+    if hotbar < 1 or hotbar > 3 or to_hotbar < 1 or to_hotbar > 3 then
+        print('XIVHOTBAR: Invalid hotbar. Please use a number between 1 and 3.')
+        return
+    end
+
+    if slot < 1 or slot > 10 or to_slot < 1 or to_slot > 10 then
+        print('XIVHOTBAR: Invalid slot. Please use a number between 1 and 10.')
+        return
+    end
+
+    player:copy_action(environment, hotbar, slot, to_environment, to_hotbar, to_slot, is_moving)
+    player:save_hotbar()
+    reload_hotbar()
+end
+
+-- command to update action alias
+function update_alias_command(args)
+    if not args[4] then
+        print('XIVHOTBAR: Invalid arguments: alias <mode> <hotbar> <slot> <alias>')
+        return
+    end
+
+    local environment = args[1]:lower()
+    local hotbar = tonumber(args[2]) or 0
+    local slot = tonumber(args[3]) or 0
+    local alias = args[4]
+
+    if environment ~= 'battle' and environment ~= 'field' and environment ~= 'b' and environment ~= 'f' then
+        print('XIVHOTBAR: Invalid mode. Available modes are "Battle" (b) and "Field" (f).')
+        return
+    end
+
+    if hotbar < 1 or hotbar > 3 then
+        print('XIVHOTBAR: Invalid hotbar. Please use a number between 1 and 3.')
+        return
+    end
+
+    if slot < 1 or slot > 10 then
+        print('XIVHOTBAR: Invalid slot. Please use a number between 1 and 10.')
+        return
+    end
+
+    player:set_action_alias(environment, hotbar, slot, alias)
+    player:save_hotbar()
+    reload_hotbar()
+end
+
+-- command to update action icon
+function update_icon_command(args)
+    if not args[4] then
+        print('XIVHOTBAR: Invalid arguments: icon <mode> <hotbar> <slot> <icon>')
+        return
+    end
+
+    local environment = args[1]:lower()
+    local hotbar = tonumber(args[2]) or 0
+    local slot = tonumber(args[3]) or 0
+    local icon = args[4]
+
+    if environment ~= 'battle' and environment ~= 'field' and environment ~= 'b' and environment ~= 'f' then
+        print('XIVHOTBAR: Invalid mode. Available modes are "Battle" (b) and "Field" (f).')
+        return
+    end
+
+    if hotbar < 1 or hotbar > 3 then
+        print('XIVHOTBAR: Invalid hotbar. Please use a number between 1 and 3.')
+        return
+    end
+
+    if slot < 1 or slot > 10 then
+        print('XIVHOTBAR: Invalid slot. Please use a number between 1 and 10.')
+        return
+    end
+
+    player:set_action_icon(environment, hotbar, slot, icon)
+    player:save_hotbar()
+    reload_hotbar()
+end
+
+-----------------------------
 -- Bind Events
 -----------------------------
 
@@ -124,6 +302,29 @@ end)
 -- ON LOGOUT
 windower.register_event('logout', function()
     ui:hide()
+end)
+
+-- ON COMMAND
+windower.register_event('addon command', function(command, ...)
+    command = command and command:lower() or 'help'
+    local args = {...}
+
+    if command == 'reload' then
+        return reload_hotbar()
+
+    elseif command == 'set' then
+        set_action_command(args)
+    elseif command == 'del' or command == 'delete' then
+        delete_action_command(args)
+    elseif command == 'cp' or command == 'copy' then
+        copy_action_command(args, false)
+    elseif command == 'mv' or command == 'move' then
+        copy_action_command(args, true)
+    elseif command == 'ic' or command == 'icon' then
+        update_icon_command(args)
+    elseif command == 'al' or command == 'alias' then
+        update_alias_command(args)
+    end
 end)
 
 -- ON KEY

@@ -205,12 +205,15 @@ function ui:load(theme_options)
             self.hotbars[h].slot_key[i]:size(9)
             self.hotbars[h].slot_key[i]:alpha(200)
 
+            local key = i
+            if i == 10 then key = 0 end
+
             if h == 3 then
-                self.hotbars[h].slot_key[i]:text('c' .. i)
+                self.hotbars[h].slot_key[i]:text('c' .. key)
             elseif h == 2 then
-                self.hotbars[h].slot_key[i]:text('s' .. i)
+                self.hotbars[h].slot_key[i]:text('s' .. key)
             else
-                self.hotbars[h].slot_key[i]:text(i .. '')
+                self.hotbars[h].slot_key[i]:text(tostring(key))
             end
         end
     end
@@ -344,7 +347,7 @@ function ui:load_action(hotbar, slot, action, player_vitals)
             if action.type == 'ja' then
                 self.hotbars[hotbar].slot_icon[slot]:path(windower.addon_path .. '/images/icons/abilities/' .. string.format("%05d", skill.icon) .. '.png')
             else
-                self.hotbars[hotbar].slot_icon[slot]:path(windower.addon_path .. '/images/icons/weapons/Sword.jpg')
+                self.hotbars[hotbar].slot_icon[slot]:path(windower.addon_path .. '/images/icons/weapons/sword.png')
                 skill.tpcost = '1000'
             end
         end
@@ -353,29 +356,31 @@ function ui:load_action(hotbar, slot, action, player_vitals)
         self.hotbars[hotbar].slot_icon[slot]:pos(self:get_slot_x(hotbar, slot) + 4, self:get_slot_y(hotbar, slot) + 4) -- temporary fix for 32 x 32 icons
         self.hotbars[hotbar].slot_icon[slot]:show()
 
-        -- display skill element
-        if skill.element ~= nil and skill.element ~= 'None' and self.theme.hide_action_element == false then
-            self.hotbars[hotbar].slot_element[slot]:path(windower.addon_path .. '/images/icons/elements/' .. skill.element .. '.png')
-            self.hotbars[hotbar].slot_element[slot]:show()
-        end
-
-        -- display mp cost
-        if skill.mpcost ~= nil and skill.mpcost ~= '0' then
-            self.hotbars[hotbar].slot_cost[slot]:color(self.theme.mp_cost_color_red, self.theme.mp_cost_color_green, self.theme.mp_cost_color_blue)
-            self.hotbars[hotbar].slot_cost[slot]:text(skill.mpcost)
-
-            if player_vitals.mp < tonumber(skill.mpcost) then
-                self.disabled_slots.no_vitals[action.action] = true
-                is_disabled = true
+        if skill ~= nil then
+            -- display skill element
+            if skill.element ~= nil and skill.element ~= 'None' and self.theme.hide_action_element == false then
+                self.hotbars[hotbar].slot_element[slot]:path(windower.addon_path .. '/images/icons/elements/' .. skill.element .. '.png')
+                self.hotbars[hotbar].slot_element[slot]:show()
             end
-        -- display tp cost
-        elseif skill.tpcost ~= nil and skill.tpcost ~= '0' then
-            self.hotbars[hotbar].slot_cost[slot]:color(self.theme.tp_cost_color_red, self.theme.tp_cost_color_green, self.theme.tp_cost_color_blue)
-            self.hotbars[hotbar].slot_cost[slot]:text(skill.tpcost)
 
-            if player_vitals.tp < tonumber(skill.tpcost) then
-                self.disabled_slots.no_vitals[action.action] = true
-                is_disabled = true
+            -- display mp cost
+            if skill.mpcost ~= nil and skill.mpcost ~= '0' then
+                self.hotbars[hotbar].slot_cost[slot]:color(self.theme.mp_cost_color_red, self.theme.mp_cost_color_green, self.theme.mp_cost_color_blue)
+                self.hotbars[hotbar].slot_cost[slot]:text(skill.mpcost)
+
+                if player_vitals.mp < tonumber(skill.mpcost) then
+                    self.disabled_slots.no_vitals[action.action] = true
+                    is_disabled = true
+                end
+            -- display tp cost
+            elseif skill.tpcost ~= nil and skill.tpcost ~= '0' then
+                self.hotbars[hotbar].slot_cost[slot]:color(self.theme.tp_cost_color_red, self.theme.tp_cost_color_green, self.theme.tp_cost_color_blue)
+                self.hotbars[hotbar].slot_cost[slot]:text(skill.tpcost)
+
+                if player_vitals.tp < tonumber(skill.tpcost) then
+                    self.disabled_slots.no_vitals[action.action] = true
+                    is_disabled = true
+                end
             end
         end
     -- if action is an item

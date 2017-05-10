@@ -163,7 +163,6 @@ function player:reset_hotbar()
     end
 
     self.hotbar_settings.active_hotbar = 1
-    self.hotbar_settings.active_environment = 'field'
 end
 
 -- toggle bar environment
@@ -194,13 +193,16 @@ end
 
 -- add given action to a hotbar
 function player:add_action(action, environment, hotbar, slot)
+    if environment == 'b' then environment = 'battle' elseif environment == 'f' then environment = 'field' end
+    if slot == 10 then slot = 0 end
+
     if self.hotbar[environment] == nil then
-        windower.console.write('XIVHOTBARS: invalid hotbar (environment)')
+        windower.console.write('XIVHOTBAR: invalid hotbar (environment)')
         return
     end
 
     if self.hotbar[environment]['hotbar_' .. hotbar] == nil then
-        windower.console.write('XIVHOTBARS: invalid hotbar (hotbar number)')
+        windower.console.write('XIVHOTBAR: invalid hotbar (hotbar number)')
         return
     end
 
@@ -229,6 +231,64 @@ function player:execute_action(slot)
     end
 
     windower.chat.input('/' .. action.type .. ' "' .. action.action .. '" <' .. action.target .. '>')
+end
+
+-- remove action from slot
+function player:remove_action(environment, hotbar, slot)
+    if environment == 'b' then environment = 'battle' elseif environment == 'f' then environment = 'field' end
+    if slot == 10 then slot = 0 end
+
+    if self.hotbar[environment] == nil then return end
+    if self.hotbar[environment]['hotbar_' .. hotbar] == nil then return end
+
+    self.hotbar[environment]['hotbar_' .. hotbar]['slot_' .. slot] = nil
+end
+
+-- copy action from one slot to another
+function player:copy_action(environment, hotbar, slot, to_environment, to_hotbar, to_slot, is_moving)
+    if environment == 'b' then environment = 'battle' elseif environment == 'f' then environment = 'field' end
+    if to_environment == 'b' then to_environment = 'battle' elseif to_environment == 'f' then to_environment = 'field' end
+    if slot == 10 then slot = 0 end
+    if to_slot == 10 then to_slot = 0 end
+
+    if self.hotbar[environment] == nil or self.hotbar[to_environment] == nil then return end
+    if self.hotbar[environment]['hotbar_' .. hotbar] == nil or self.hotbar[to_environment]['hotbar_' .. to_hotbar] == nil then return end
+
+    self.hotbar[to_environment]['hotbar_' .. to_hotbar]['slot_' .. to_slot] = self.hotbar[environment]['hotbar_' .. hotbar]['slot_' .. slot]
+
+    if is_moving then self.hotbar[environment]['hotbar_' .. hotbar]['slot_' .. slot] = nil end
+end
+
+-- update action alias
+function player:set_action_alias(environment, hotbar, slot, alias)
+    if environment == 'b' then environment = 'battle' elseif environment == 'f' then environment = 'field' end
+    if slot == 10 then slot = 0 end
+
+    if self.hotbar[environment] == nil then return end
+    if self.hotbar[environment]['hotbar_' .. hotbar] == nil then return end
+    if self.hotbar[environment]['hotbar_' .. hotbar]['slot_' .. slot] == nil then return end
+
+    self.hotbar[environment]['hotbar_' .. hotbar]['slot_' .. slot].alias = alias
+end
+
+-- update action icon
+function player:set_action_icon(environment, hotbar, slot, icon)
+    if environment == 'b' then environment = 'battle' elseif environment == 'f' then environment = 'field' end
+    if slot == 10 then slot = 0 end
+
+    if self.hotbar[environment] == nil then return end
+    if self.hotbar[environment]['hotbar_' .. hotbar] == nil then return end
+    if self.hotbar[environment]['hotbar_' .. hotbar]['slot_' .. slot] == nil then return end
+
+    self.hotbar[environment]['hotbar_' .. hotbar]['slot_' .. slot].icon = icon
+end
+
+-- save current hotbar
+function player:save_hotbar()
+    local new_hotbar = {}
+    new_hotbar.hotbar = self.hotbar
+
+    storage:save_hotbar(new_hotbar)
 end
 
 return player

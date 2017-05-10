@@ -52,4 +52,14 @@ function storage:update_filename(main, sub)
     self.file = file.new('data/hotbar/' .. self.directory .. '/' .. self.filename .. '.xml')
 end
 
+-- update file with hotbar
+function storage:save_hotbar(new_hotbar)
+    if not self.file:exists() then
+        error('Hotbar file could not be found!')
+        return
+    end
+
+    self.file:write(table.to_xml(new_hotbar))
+end
+
 return storage

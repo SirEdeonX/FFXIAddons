@@ -1,5 +1,10 @@
-# xivhotbar - [WIP]
+# xivhotbar
 This addon adds a hotbar to FFXI, akin to those of more modern MMOs, along with recast times and mp/tp costs. It can also trigger custom commands.
+
+# NEW VERSION:
+This addon was created as a challenge for myself back when I came back to FFXI. I'm a FFXIV player, creator of [Eorzea Collection](https://ffxiv.eorzeacollection.com) and as such, it hasn't been updated in quite a while and I'm afraid I won't have time to do it. HOWEVER, the amazing Akirane has been updating it and adding a LOT more features to it:
+So check it out here:
+https://github.com/Akirane/XIVHotbar
 
 ![alt text](http://i.imgur.com/RnpVLbZ.png)
 
